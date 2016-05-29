@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0BF81A44-1AD0-48CF-88AC-34375CF54213}</ProjectGuid>
+    <ProjectGuid>{9B2FD1DF-09FB-4616-B34A-A876B61284A7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Tweakers.Tests</RootNamespace>
@@ -53,7 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tweakers\Tweakers.csproj">
-      <Project>{A7A7AA3E-2A4A-4796-98A6-78F6A8214CFB}</Project>
+      <Project>{8C33E1E4-7186-47F9-9550-3B480164A76A}</Project>
       <Name>Tweakers</Name>
     </ProjectReference>
   </ItemGroup>
