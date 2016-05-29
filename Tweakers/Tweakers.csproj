@@ -139,6 +139,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\AssetController.cs" />
+    <Compile Include="Controller\CategoryController.cs" />
+    <Compile Include="Controller\ProductController.cs" />
+    <Compile Include="Controller\ProductPictureController.cs" />
+    <Compile Include="Controller\ProductReviewController.cs" />
+    <Compile Include="Controller\ProductSpecificationController.cs" />
+    <Compile Include="Controller\ProductTypeController.cs" />
+    <Compile Include="Controller\ReviewController.cs" />
+    <Compile Include="Controller\ShopController.cs" />
+    <Compile Include="Controller\ShopPriceController.cs" />
+    <Compile Include="Controller\ShopReviewController.cs" />
+    <Compile Include="Controller\SpecificationController.cs" />
+    <Compile Include="Controller\UserController.cs" />
+    <Compile Include="Controller\UserListController.cs" />
     <Compile Include="Model\Asset.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Product.cs" />
@@ -157,8 +171,20 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controller\" />
-    <Folder Include="View\" />
+    <Folder Include="Views\Asset\" />
+    <Folder Include="Views\Category\" />
+    <Folder Include="Views\ProductPicture\" />
+    <Folder Include="Views\ProductReview\" />
+    <Folder Include="Views\ProductSpecification\" />
+    <Folder Include="Views\ProductType\" />
+    <Folder Include="Views\Product\" />
+    <Folder Include="Views\Review\" />
+    <Folder Include="Views\ShopPrice\" />
+    <Folder Include="Views\ShopReview\" />
+    <Folder Include="Views\Shop\" />
+    <Folder Include="Views\Specification\" />
+    <Folder Include="Views\UserList\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
