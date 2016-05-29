@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Tweakers.Models;
 
 namespace Tweakers.Controllers
 {
@@ -11,7 +12,21 @@ namespace Tweakers.Controllers
         // GET: User
         public ActionResult Index()
         {
-            return View();
+            return View("User");
+        }
+
+        public bool Login(string name, string password)
+        {
+            User user = Models.User.LogIn(name, password);
+
+            if (user == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
