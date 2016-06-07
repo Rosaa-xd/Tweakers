@@ -3,18 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Tweakers.Models;
 
 namespace Tweakers.Controllers
 {
     public class UserController : Controller
     {
-        // GET: User
-        public ActionResult Index()
-        {
-            return View("Login");
-        }
-
         public ActionResult Login()
         {
             return View();
@@ -25,23 +20,29 @@ namespace Tweakers.Controllers
         {
             if (ValidLogin(name, password))
             {
-                ModelState.AddModelError("", "Je bent ingelogd");
-                return View();
+                FormsAuthentication.SetAuthCookie(name, false);
+                return RedirectToAction("Index", "Home");
             }
-            ModelState.AddModelError("", "Je bent niet ingelogd");
+            ModelState.AddModelError("", "Uw gebruikersnaam of wachtwoord is onjuist");
             return View();
         }
         
 
         public bool ValidLogin(string name, string password)
         {
-            User user = new User().LogIn(name, password);
+            User user = Models.User.FindByLogin(name, password);
 
             if (user != null)
             {
                 return true;
             }
             return false;
+        }
+        
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

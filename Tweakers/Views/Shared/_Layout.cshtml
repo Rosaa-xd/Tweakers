@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="stylesheet" type="text/css" href="~/Content/GeneralStyle.css"/>
+    <title>@ViewBag.Title - Tweakers</title>
+    
+</head>
+<body>
+    <div class="nav">
+        <ul class="navbar">
+            <li>@Html.ActionLink("Inloggen", "Login", "User")</li>
+            <li>@Html.ActionLink("PriceWatch", "Pricewatch", "Category")</li>
+            <li>@Html.ActionLink("Wenslijst", "Wishlist", "UserList")</li>
+            <li>@Html.ActionLink("Inventaris", "Inventory", "UserList")</li>
+            <li>@Html.ActionLink("Uitloggen", "Logout", "User")</li>
+
+            @*@if (Request.IsAuthenticated)
+            {
+                <li>@Html.ActionLink("Uitloggen", "Logout", "User")</li>
+            }
+            else
+            {
+                <li>@Html.ActionLink("Inloggen", "Login", "User")</li>
+            }*@
+        </ul>
+    </div>
+    <div class="render_body_content">
+        @RenderBody()
+        <hr/>
+        <footer>
+            <p>&copy; @DateTime.Now.Year</p>
+        </footer>
+    </div>
+</body>
+</html>
