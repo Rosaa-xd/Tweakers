@@ -64,7 +64,7 @@ namespace Tweakers.Models
         {
             string query = "SELECT * " +
                            "FROM TBL_CATEGORY " +
-                           "WHERE CATGORY_ID IS NULL";
+                           "WHERE CATEGORY_ID IS NULL";
 
             using (OracleConnection connection = CreateConnection())
             using (OracleCommand command = new OracleCommand(query, connection))

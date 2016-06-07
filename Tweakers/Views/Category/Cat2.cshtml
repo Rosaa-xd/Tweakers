@@ -2,7 +2,6 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "PriceWatch";
 }
 
 <!DOCTYPE html>
@@ -10,14 +9,17 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>PriceWatch</title>
+    <title>Cat2</title>
 </head>
 <body>
-    <div class ="categories">
-        <ul class="categories"> 
+    <div>
+        <ul class="categories">
             @foreach (var pc in Model)
             {
-                <li>@Html.ActionLink(pc.Name, "Cat" + pc.ID, "Category")</li>
+                if (pc.ParentCategory.ID == 2)
+                {
+                    <li>@Html.ActionLink(pc.Name, "Cat" + pc.ID, "Category")</li>
+                }
             }
         </ul>
     </div>
