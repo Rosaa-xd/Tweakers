@@ -1,0 +1,30 @@
+﻿@model List<Tweakers.Models.Category>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "PriceWatch";
+    List<int> parentCategories = new List<int>(); 
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PriceWatch</title>
+</head>
+<body>
+    <div class ="categories">
+        <ul class="categories"> 
+            @foreach (var pc in Model)
+            {
+                if (pc.ParentCategory == null)
+                {
+                    <li>@Html.ActionLink(pc.Name, pc.Name, "Category")</li>
+                    parentCategories.Add(pc.ID);
+                }
+            }
+        </ul>
+    </div>
+</body>
+</html>

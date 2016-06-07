@@ -137,6 +137,10 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\jquery-1.10.2.js" />
+    <Content Include="scripts\jquery-1.10.2.min.js" />
+    <Content Include="scripts\jquery-1.10.2.min.map" />
     <None Include="scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
@@ -196,6 +200,7 @@
     <Content Include="scripts\jquery-2.2.3.min.map" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Category\PriceWatch.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -206,7 +211,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Asset\" />
-    <Folder Include="Views\Category\" />
     <Folder Include="Views\ProductPicture\" />
     <Folder Include="Views\ProductReview\" />
     <Folder Include="Views\ProductSpecification\" />
