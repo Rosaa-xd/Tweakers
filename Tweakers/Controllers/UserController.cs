@@ -12,21 +12,36 @@ namespace Tweakers.Controllers
         // GET: User
         public ActionResult Index()
         {
-            return View("User");
+            return View("Login");
         }
 
-        public bool Login(string name, string password)
+        public ActionResult Login()
         {
-            User user = Models.User.LogIn(name, password);
+            return View();
+        }
 
-            if (user == null)
+        [HttpPost]
+        public ActionResult Login(string name, string password)
+        {
+            if (ValidLogin(name, password))
             {
-                return false;
+                ModelState.AddModelError("", "Je bent ingelogd");
+                return View();
             }
-            else
+            ModelState.AddModelError("", "Je bent niet ingelogd");
+            return View();
+        }
+        
+
+        public bool ValidLogin(string name, string password)
+        {
+            User user = new User().LogIn(name, password);
+
+            if (user != null)
             {
                 return true;
             }
+            return false;
         }
     }
 }

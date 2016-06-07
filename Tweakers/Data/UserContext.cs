@@ -10,7 +10,7 @@ namespace Tweakers.Data
 {
     public class UserContext : DbContext
     {
-        public static User FindByLogin(string name, string password)
+        public User FindByLogin(string name, string password)
         {
             string query = "SELECT * " +
                            "FROM TBL_USER " +
@@ -33,7 +33,7 @@ namespace Tweakers.Data
             return null;
         }
 
-        private static User GetUserFromDataRecord(IDataRecord record)
+        private User GetUserFromDataRecord(IDataRecord record)
         {
             return new User
             (

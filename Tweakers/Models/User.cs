@@ -4,14 +4,17 @@ using System.Linq;
 using System.Web;
 using Microsoft.ApplicationInsights.Extensibility.Implementation;
 using UserContext = Tweakers.Data.UserContext;
+using System.ComponentModel.DataAnnotations;
 
 namespace Tweakers.Models
 {
     public class User
     {
-        //private UserContext ctx;
+        private UserContext ctx = new UserContext();
         public int ID { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Password { get; set; }
         public List<UserList> UserLists;
         public List<Review> Reviews;
@@ -37,9 +40,14 @@ namespace Tweakers.Models
             Reviews = reviews;
         }
 
-        public static User LogIn(string name, string password)
+        public User()
         {
-            return UserContext.FindByLogin(name, password);
+            
+        }
+
+        public User LogIn(string name, string password)
+        {
+            return ctx.FindByLogin(name, password);
         }
     }
 }
