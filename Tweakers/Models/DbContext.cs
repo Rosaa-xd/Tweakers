@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Oracle.ManagedDataAccess.Client;
 
-namespace Tweakers.Data
+namespace Tweakers.Models
 {
     public abstract class DbContext
     {
