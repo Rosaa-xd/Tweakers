@@ -14,12 +14,13 @@
 </head>
 <body>
     <div class ="categories">
-        <ul class="categories"> 
-            @foreach (var pc in Model)
-            {
-                <li>@Html.ActionLink(pc.Name, "Cat" + pc.ID, "Category")</li>
-            }
-        </ul>
+        @*When clicking Pricewatch link, all categories will be loaded again underneath the last one*@
+            <ul class="categories">
+                @foreach (var pc in Model)
+                {
+                    <li>@Html.ActionLink(pc.Name, "Cat" + pc.ID, "Category")</li>
+                }
+            </ul>
     </div>
 </body>
 </html>
