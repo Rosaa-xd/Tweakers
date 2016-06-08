@@ -16,6 +16,8 @@ namespace Tweakers.Models
         public Category ParentCategory { get; set; }
         public List<Product> Products;
 
+        #region Constructors
+
         public Category(int id, string name)
         {
             ID = id;
@@ -43,21 +45,31 @@ namespace Tweakers.Models
             Products = products;
         }
 
-        public static List<Category> ReturnAllCategories()
+        #endregion
+
+        #region DatabaseMethods
+        public static List<Category> ReturnAllSubCategories(int pcId)
         {
             string query = "SELECT * " +
-                           "FROM TBL_CATEGORY";
+                           "FROM TBL_CATEGORY " +
+                           "WHERE CATEGORY_ID:=pcId";
 
             using (OracleConnection connection = CreateConnection())
             using (OracleCommand command = new OracleCommand(query, connection))
-            using (OracleDataReader reader = command.ExecuteReader())
             {
-                while (reader.Read())
+                command.BindByName = true;
+                command.Parameters.Add(new OracleParameter("pcId", pcId));
+
+                using (OracleDataReader reader = command.ExecuteReader())
                 {
-                     categories.Add(GetCategoryFromDataRecord(reader));
+                    while (reader.Read())
+                    {
+                        categories.Add(GetCategoryFromDataRecord(reader));
+                    }
                 }
+                return categories;
             }
-            return categories;
+            
         }
 
         public static List<Category> ReturnAllParentCategories()
@@ -112,5 +124,7 @@ namespace Tweakers.Models
                 Convert.ToInt32(record["ID"]),
                 Convert.ToString(record["NAME"]));
         }
+
+        #endregion
     }
 }

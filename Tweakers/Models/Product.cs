@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
+using Oracle.ManagedDataAccess.Client;
 
 namespace Tweakers.Models
 {
-    public class Product
+    public class Product : DbContext
     {
+        private static List<Product> products = new List<Product>();
+
         public int ID { get; set; }
         public string Name { get; set; }
         public string Brand { get; set; }
@@ -20,6 +24,7 @@ namespace Tweakers.Models
         public List<Review> Reviews;
         public List<ShopPrice> ShopPrices;
 
+        #region Constructors
         public Product(int id, string name, string brand, string sku, int ean)
         {
             ID = id;
@@ -74,5 +79,43 @@ namespace Tweakers.Models
             Reviews = reviews;
             ShopPrices = shopPrices;
         }
+        #endregion
+
+        #region DatabaseMethods
+
+        public static List<Product> FindAllProductsInCategory(int category_id)
+        {
+            string query = "SELECT * " +
+                           "FROM TBL_PRODUCT " +
+                           "WHERE CATEGORY_ID:=category_id";
+
+
+            using (OracleConnection connection = CreateConnection())
+            using (OracleCommand command = new OracleCommand(query, connection))
+            {
+                command.BindByName = true;
+                command.Parameters.Add(new OracleParameter("category_id", category_id));
+
+                using (OracleDataReader reader = command.ExecuteReader())
+                {
+                    products.Add(GetProductFromDataRecord(reader));
+                }
+            }
+            return products;
+        }
+
+        private static Product GetProductFromDataRecord(IDataRecord record)
+        {
+            return new Product(
+                Convert.ToInt32(record["ID"]),
+                Convert.ToString(record["NAME"]),
+                Convert.ToString(record["BRAND"]),
+                Convert.ToString(record["SKU"]),
+                Convert.ToInt32(record["EAN"]),
+                ProductType.FindById(Convert.ToInt32(record["PRODUCTTYPE_ID"])),
+                Category.FindById(Convert.ToInt32(record["CATEGORY_ID"])));
+        }
+
+        #endregion
     }
 }
