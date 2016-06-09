@@ -7,14 +7,14 @@ namespace Tweakers.Models
 {
     public class ProductSpecification
     {
-        public Specification Specification { get; set; }
         public Product Product { get; set; }
+        public string Name { get; set; }
         public string Value { get; set; }
 
-        public ProductSpecification(Specification specification, Product product, string value)
+        public ProductSpecification(Product product, string name, string value)
         {
-            Specification = specification;
             Product = product;
+            Name = name;
             Value = value;
         }
     }

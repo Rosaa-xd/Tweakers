@@ -176,6 +176,7 @@
     </Compile>
     <Compile Include="Models\Asset.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Dictionaries.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductPicture.cs" />
     <Compile Include="Models\ProductReview.cs" />

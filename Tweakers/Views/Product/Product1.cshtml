@@ -1,0 +1,13 @@
+﻿@model Tweakers.Models.Product
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewBag.Title</h2>
+@Model.Name;
+@Model.Brand;
+@Model.AverageReviewScore;
+@Model.Price;
+

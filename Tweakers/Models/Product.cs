@@ -104,6 +104,14 @@ namespace Tweakers.Models
                     while (reader.Read())
                     {
                         products.Add(GetProductFromDataRecord(reader));
+                        try
+                        {
+                            Dictionaries.Products.Add(GetProductIdFromDataRecord(reader), GetProductFromDataRecord(reader));
+                        }
+                        catch (ArgumentException)
+                        {
+                            Dictionaries.Products[GetProductIdFromDataRecord(reader)] = GetProductFromDataRecord(reader);
+                        }
                     }
                 }
             }
@@ -168,7 +176,6 @@ namespace Tweakers.Models
 
         private static Product GetProductFromDataRecord(IDataRecord record)
         {
-            ProductType productType;
             int id = Convert.ToInt32(record["ID"]);
             string name = Convert.ToString(record["NAME"]);
             string brand = Convert.ToString(record["BRAND"]);
@@ -176,7 +183,7 @@ namespace Tweakers.Models
             long ean = Convert.ToInt64(record["EAN"]);
             double ars = GetProductAverageReviewScore(Convert.ToInt32(record["ID"]));
             double price = GetProductPrice(Convert.ToInt32(record["ID"]));
-            productType = record.IsDBNull(1) ? null : ProductType.FindById(Convert.ToInt32(record["PRODUCTTYPE_ID"]));
+            ProductType productType = record.IsDBNull(1) ? null : ProductType.FindById(Convert.ToInt32(record["PRODUCTTYPE_ID"]));
             Category category = Category.FindById(Convert.ToInt32(record["CATEGORY_ID"]));
 
             if (productType == null)
@@ -185,6 +192,11 @@ namespace Tweakers.Models
             }
 
             return new Product(id, name, brand, sku, ean, ars, price, productType, category);
+        }
+
+        private static int GetProductIdFromDataRecord(IDataRecord record)
+        {
+            return Convert.ToInt32(record["ID"]);
         }
         #endregion
     }

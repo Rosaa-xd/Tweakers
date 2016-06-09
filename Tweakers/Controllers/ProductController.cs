@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Tweakers.Models;
 
 namespace Tweakers.Controllers
 {
@@ -15,7 +16,7 @@ namespace Tweakers.Controllers
         /// <returns>View(Models.Product.FindAllProductsInCategory(id)</returns>
         public ActionResult GenerateProducts(int id)
         {
-            return View(Models.Product.FindAllProductsInCategory(id));
+            return View(Product.FindAllProductsInCategory(id));
         }
 
         #region ProductCategories
@@ -100,9 +101,10 @@ namespace Tweakers.Controllers
 
         #region Products
 
-        public ActionResult Product1()
+        public ActionResult Product1(int id)
         {
-            return View();
+            Product product = Dictionaries.Products[id];
+            return View(product);
         }
         #endregion
     }
