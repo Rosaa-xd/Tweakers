@@ -222,6 +222,21 @@
     <Content Include="Views\Category\Cat18.cshtml" />
     <Content Include="Views\Category\Cat19.cshtml" />
     <Content Include="Views\Product\Product.cshtml" />
+    <Content Include="Views\Product\ProductCat10.cshtml" />
+    <Content Include="Views\Product\ProductCat11.cshtml" />
+    <Content Include="Views\Product\ProductCat15.cshtml" />
+    <Content Include="Views\Product\ProductCat16.cshtml" />
+    <Content Include="Views\Product\ProductCat17.cshtml" />
+    <Content Include="Views\Product\ProductCat18.cshtml" />
+    <Content Include="Views\Product\ProductCat19.cshtml" />
+    <Content Include="Views\Product\ProductCat13.cshtml" />
+    <Content Include="Views\Product\ProductCat2.cshtml" />
+    <Content Include="Views\Product\ProductCat3.cshtml" />
+    <Content Include="Views\Product\ProductCat4.cshtml" />
+    <Content Include="Views\Product\ProductCat5.cshtml" />
+    <Content Include="Views\Product\ProductCat6.cshtml" />
+    <Content Include="Views\Product\ProductCat8.cshtml" />
+    <Content Include="Views\Product\ProductCat9.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

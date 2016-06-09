@@ -50,7 +50,9 @@ namespace Tweakers.Models
         {
             List<Category> categories = new List<Category>();
 
-            string query = "SELECT * FROM TBL_CATEGORY WHERE CATEGORY_ID=:id";
+            string query = "SELECT * " +
+                           "FROM TBL_CATEGORY " +
+                           "WHERE CATEGORY_ID=:id";
 
             using (OracleConnection connection = CreateConnection())
             using (OracleCommand command = new OracleCommand(query, connection))

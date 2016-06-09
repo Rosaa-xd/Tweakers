@@ -38,7 +38,7 @@ namespace Tweakers.Models
         {
             string query = "SELECT * " +
                            "FROM TBL_PRODUCTTYPE " +
-                           "WHERE ID:=id";
+                           "WHERE ID=:id";
 
             using (OracleConnection connection = CreateConnection())
             using (OracleCommand command = new OracleCommand(query, connection))
@@ -50,7 +50,10 @@ namespace Tweakers.Models
                 {
                     if (reader.Read())
                     {
-                        return GetProductTypeFromDataRecord(reader);
+                        if (!reader.IsDBNull(0))
+                        {
+                            return GetProductTypeFromDataRecord(reader);
+                        }
                     }
                 }
             }
