@@ -167,7 +167,6 @@
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\ShopPriceController.cs" />
     <Compile Include="Controllers\ShopReviewController.cs" />
-    <Compile Include="Controllers\SpecificationController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserListController.cs" />
     <Compile Include="HtmlHelperClasses\HtmlCategoryHelper.cs" />
@@ -186,7 +185,6 @@
     <Compile Include="Models\Shop.cs" />
     <Compile Include="Models\ShopPrice.cs" />
     <Compile Include="Models\ShopReview.cs" />
-    <Compile Include="Models\Specification.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -221,7 +219,6 @@
     <Content Include="Views\Category\Cat17.cshtml" />
     <Content Include="Views\Category\Cat18.cshtml" />
     <Content Include="Views\Category\Cat19.cshtml" />
-    <Content Include="Views\Product\Product.cshtml" />
     <Content Include="Views\Product\ProductCat10.cshtml" />
     <Content Include="Views\Product\ProductCat11.cshtml" />
     <Content Include="Views\Product\ProductCat15.cshtml" />
@@ -237,6 +234,7 @@
     <Content Include="Views\Product\ProductCat6.cshtml" />
     <Content Include="Views\Product\ProductCat8.cshtml" />
     <Content Include="Views\Product\ProductCat9.cshtml" />
+    <Content Include="Views\Product\Product1.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
