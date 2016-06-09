@@ -221,6 +221,7 @@
     <Content Include="Views\Category\Cat17.cshtml" />
     <Content Include="Views\Category\Cat18.cshtml" />
     <Content Include="Views\Category\Cat19.cshtml" />
+    <Content Include="Views\Product\Product.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -235,7 +236,6 @@
     <Folder Include="Views\ProductReview\" />
     <Folder Include="Views\ProductSpecification\" />
     <Folder Include="Views\ProductType\" />
-    <Folder Include="Views\Product\" />
     <Folder Include="Views\Review\" />
     <Folder Include="Views\ShopPrice\" />
     <Folder Include="Views\ShopReview\" />

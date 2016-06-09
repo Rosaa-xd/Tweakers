@@ -9,8 +9,6 @@ namespace Tweakers.Models
 {
     public class Category : DbContext
     {
-        private static List<Category> categories = new List<Category>();
-        private static List<Category> parentCategories = new List<Category>();
         public int ID { get; set; }
         public string Name { get; set; }
         public Category ParentCategory { get; set; }
@@ -48,17 +46,17 @@ namespace Tweakers.Models
         #endregion
 
         #region DatabaseMethods
-        public static List<Category> ReturnAllSubCategories(int pcId)
+        public static List<Category> ReturnAllSubCategories (int id)
         {
-            string query = "SELECT * " +
-                           "FROM TBL_CATEGORY " +
-                           "WHERE CATEGORY_ID:=pcId";
+            List<Category> categories = new List<Category>();
+
+            string query = "SELECT * FROM TBL_CATEGORY WHERE CATEGORY_ID=:id";
 
             using (OracleConnection connection = CreateConnection())
             using (OracleCommand command = new OracleCommand(query, connection))
             {
                 command.BindByName = true;
-                command.Parameters.Add(new OracleParameter("pcId", pcId));
+                command.Parameters.Add(new OracleParameter("id", id));
 
                 using (OracleDataReader reader = command.ExecuteReader())
                 {
@@ -67,13 +65,14 @@ namespace Tweakers.Models
                         categories.Add(GetCategoryFromDataRecord(reader));
                     }
                 }
-                return categories;
             }
-            
+            return categories;
         }
 
         public static List<Category> ReturnAllParentCategories()
         {
+            List<Category> parentCategories = new List<Category>();
+
             string query = "SELECT * " +
                            "FROM TBL_CATEGORY " +
                            "WHERE CATEGORY_ID IS NULL";

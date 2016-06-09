@@ -1,26 +1,18 @@
 ﻿@model List<Tweakers.Models.Category>
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "PriceWatch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Random dice = new Random();
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>PriceWatch</title>
-</head>
-<body>
-    <div class ="categories">
-        @*When clicking Pricewatch link, all categories will be loaded again underneath the last one*@
-            <ul class="categories">
-                @foreach (var pc in Model)
-                {
-                    <li>@Html.ActionLink(pc.Name, "Cat" + pc.ID, "Category")</li>
-                }
-            </ul>
+<h2>PriceWatch</h2>
+    <div class="categories">
+        <ul class="categories">
+            @foreach (var pc in Model)
+            {
+                <li>@Html.ActionLink(pc.Name, "Cat" + pc.ID, "Category")</li>
+            }
+            @dice
+        </ul>
     </div>
-</body>
-</html>

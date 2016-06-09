@@ -3,141 +3,196 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using Tweakers.Models;
 
 namespace Tweakers.Controllers
 {
     public class CategoryController : Controller
     {
-        private bool isGenerated;
         public ActionResult PriceWatch()
         {
-            if (!isGenerated)
+            return View(Category.ReturnAllParentCategories());
+        }
+
+        private ViewResult SubCategory(int id)
+        {
+            if (Category.ReturnAllSubCategories(id).Count != 0)
             {
-                isGenerated = true;
-                List<Category> categories = Category.ReturnAllParentCategories();
-                return View(categories);
+                return View(Category.ReturnAllSubCategories(id));
             }
-            return View();
+            return null;
         }
 
         public ActionResult Cat1()
         {
-            List<Category> categories = Category.ReturnAllSubCategories(1);
-
-            if (categories != null)
+            if (SubCategory(1) == null)
             {
-                return View(categories);
+                return RedirectToAction("Product", "Product");
             }
-            return RedirectToAction("Product", "Product");
+            return SubCategory(1);
         }
 
         public ActionResult Cat2()
         {
-            List<Category> categories = Category.ReturnAllSubCategories(2);
-            return View(categories);
+            if (SubCategory(2) == null)
+            {
+                return RedirectToAction("Product", "Product");
+            }
+            return SubCategory(2);
         }
 
         public ActionResult Cat3()
         {
-            List<Category> categories = Category.ReturnAllSubCategories(3);
-            return View(categories);
+            if(SubCategory(3) == null)
+            {
+                return RedirectToAction("Product", "Product");
+            }
+            return SubCategory(3);
         }
 
         public ActionResult Cat4()
         {
-            List<Category> categories = Category.ReturnAllSubCategories(4);
-            return View(categories);
+            if (SubCategory(4) == null)
+            {
+                return RedirectToAction("Product", "Product");
+            }
+            return SubCategory(4);
         }
 
         public ActionResult Cat5()
         {
-            List<Category> categories = Category.ReturnAllSubCategories(5);
-            return View(categories);
+            if (SubCategory(5) == null)
+            {
+                return RedirectToAction("Product", "Product");
+            }
+            return SubCategory(5);
         }
 
         public ActionResult Cat6()
         {
-            List<Category> categories = Category.ReturnAllSubCategories(6);
-            return View(categories);
+            if (SubCategory(6) == null)
+            {
+                return RedirectToAction("Product", "Product");
+            }
+            return SubCategory(6);
         }
 
         public ActionResult Cat7()
         {
-            List<Category> categories = Category.ReturnAllSubCategories(7);
-            return View(categories);
+            if (SubCategory(7) == null)
+            {
+                return RedirectToAction("Product", "Product");
+            }
+            return SubCategory(7);
         }
 
         public ActionResult Cat8()
         {
-            List<Category> categories = Category.ReturnAllSubCategories(8);
-            return View(categories);
+            if (SubCategory(8) == null)
+            {
+                return RedirectToAction("Product", "Product");
+            }
+            return SubCategory(8);
         }
 
         public ActionResult Cat9()
         {
-            List<Category> categories = Category.ReturnAllSubCategories(9);
-            return View(categories);
+            if (SubCategory(9) == null)
+            {
+                return RedirectToAction("Product", "Product");
+            }
+            return SubCategory(9);
         }
 
         public ActionResult Cat10()
         {
-            List<Category> categories = Category.ReturnAllSubCategories(10);
-            return View(categories);
+            if (SubCategory(10) == null)
+            {
+                return RedirectToAction("Product", "Product");
+            }
+            return SubCategory(10);
         }
 
         public ActionResult Cat11()
         {
-            List<Category> categories = Category.ReturnAllSubCategories(11);
-            return View(categories);
+            if (SubCategory(11) == null)
+            {
+                return RedirectToAction("Product", "Product");
+            }
+            return SubCategory(11);
         }
 
         public ActionResult Cat12()
         {
-            List<Category> categories = Category.ReturnAllSubCategories(12);
-            return View(categories);
+            if (SubCategory(12) == null)
+            {
+                return RedirectToAction("Product", "Product");
+            }
+            return SubCategory(12);
         }
 
         public ActionResult Cat13()
         {
-            List<Category> categories = Category.ReturnAllSubCategories(13);
-            return View(categories);
+            if (SubCategory(13) == null)
+            {
+                return RedirectToAction("Product", "Product");
+            }
+            return SubCategory(13);
         }
 
         public ActionResult Cat14()
         {
-            List<Category> categories = Category.ReturnAllSubCategories(14);
-            return View(categories);
+            if (SubCategory(14) == null)
+            {
+                return RedirectToAction("Product", "Product");
+            }
+            return SubCategory(14);
         }
 
         public ActionResult Cat15()
         {
-            List<Category> categories = Category.ReturnAllSubCategories(15);
-            return View(categories);
+            if (SubCategory(15) == null)
+            {
+                return RedirectToAction("Product", "Product");
+            }
+            return SubCategory(15);
         }
 
         public ActionResult Cat16()
         {
-            List<Category> categories = Category.ReturnAllSubCategories(16);
-            return View(categories);
+            if (SubCategory(16) == null)
+            {
+                return RedirectToAction("Product", "Product");
+            }
+            return SubCategory(16);
         }
 
         public ActionResult Cat17()
         {
-            List<Category> categories = Category.ReturnAllSubCategories(17);
-            return View(categories);
+            if (SubCategory(17) == null)
+            {
+                return RedirectToAction("Product", "Product");
+            }
+            return SubCategory(17);
         }
 
         public ActionResult Cat18()
         {
-            List<Category> categories = Category.ReturnAllSubCategories(18);
-            return View(categories);
+            if (SubCategory(18) == null)
+            {
+                return RedirectToAction("Product", "Product");
+            }
+            return SubCategory(18);
         }
 
         public ActionResult Cat19()
         {
-            List<Category> categories = Category.ReturnAllSubCategories(19);
-            return View(categories);
+            if (Category.ReturnAllSubCategories(1).Count != 0)
+            {
+                return View(Category.ReturnAllSubCategories(19));
+            }
+            return RedirectToAction("Product", "Product");
         }
     }
 }

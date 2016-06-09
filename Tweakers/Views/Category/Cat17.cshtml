@@ -1,18 +1,15 @@
-﻿@model Tweakers.Models.Category
+﻿@model List<Tweakers.Models.Category>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Cat17</title>
-</head>
-<body>
-    <div> 
-    </div>
-</body>
-</html>
+<div>
+    <ul class="categories">
+        @foreach (var c in Model)
+            {
+            <li>@Html.ActionLink(c.Name, "Cat" + c.ID, "Category")</li>
+        }
+    </ul>
+</div>

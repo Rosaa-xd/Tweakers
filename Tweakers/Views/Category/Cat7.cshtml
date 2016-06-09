@@ -5,23 +5,11 @@
 }
 
 <!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Cat7</title>
-</head>
-<body>
-    <div>
-        <ul class="categories">
-            @foreach (var pc in Model)
+<div>
+    <ul class="categories">
+        @foreach (var c in Model)
             {
-                if (pc.ParentCategory.ID == 7)
-                {
-                    <li>@Html.ActionLink(pc.Name, "Cat" + pc.ID, "Category")</li>
-                }
-            }
-        </ul>
-    </div>
-</body>
-</html>
+            <li>@Html.ActionLink(c.Name, "Cat" + c.ID, "Category")</li>
+        }
+    </ul>
+</div>
