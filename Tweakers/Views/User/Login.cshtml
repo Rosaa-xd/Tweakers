@@ -1,16 +1,10 @@
 ﻿@model Tweakers.Models.User
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Login";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
-</head>
 <body>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
@@ -50,7 +44,6 @@
     }
     
     <div>
-        @Html.ActionLink("Back to List", "Index", "Home");
+        @Html.ActionLink("Back to Home", "Index", "Home");
     </div>
 </body>
-</html>
