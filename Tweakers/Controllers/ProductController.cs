@@ -8,22 +8,20 @@ namespace Tweakers.Controllers
 {
     public class ProductController : Controller
     {
-        // GET: Product
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        public ActionResult Product()
-        {
-            return View();
-        }
-
+        /// <summary>
+        /// Method to automatically generate the right view for the corresponding category
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>View(Models.Product.FindAllProductsInCategory(id)</returns>
         public ActionResult GenerateProducts(int id)
         {
             return View(Models.Product.FindAllProductsInCategory(id));
         }
 
+        #region ProductCategories
+        /// <summary>
+        /// All ActionResults for the ProductCategories
+        /// </summary>
         public ActionResult ProductCat2()
         {
             return GenerateProducts(2);
@@ -98,5 +96,14 @@ namespace Tweakers.Controllers
         {
             return GenerateProducts(19);
         }
+        #endregion
+
+        #region Products
+
+        public ActionResult Product1()
+        {
+            return View();
+        }
+        #endregion
     }
 }
