@@ -1,0 +1,27 @@
+﻿a {
+    color: red;
+    text-decoration: none;
+}
+
+.nav {
+    width: 100vw;
+}
+
+.nav ul li {
+    list-style: none;
+}
+
+.nav ul li a {
+    text-decoration: none;
+    text-align: center;
+    height: 25px;
+    width: 20%;
+    float: left;
+    font-family: "Roboto Condensed", "helvetica", "Liberation Sans", sans-serif;
+    color: chartreuse;
+    background-color: red;
+}
+
+body .render_body_content {
+    margin-left: 40px;
+}

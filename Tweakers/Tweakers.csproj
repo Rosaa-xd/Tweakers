@@ -125,6 +125,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\GeneralStyle.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
@@ -169,7 +170,6 @@
     <Compile Include="Controllers\ShopReviewController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserListController.cs" />
-    <Compile Include="HtmlHelperClasses\HtmlCategoryHelper.cs" />
     <Compile Include="Models\DbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
