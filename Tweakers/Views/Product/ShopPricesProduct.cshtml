@@ -18,7 +18,9 @@
             <td></td>
         </thead>
         <tbody>
-            @foreach (var sp in Model.ShopPrices)
+        @if (Model.ShopPrices.Count != 0)
+        {
+            foreach (var sp in Model.ShopPrices)
             {
                 <tr>
                     <td class="spShop">
@@ -32,8 +34,10 @@
                     </td>
                 </tr>
             }
+        }
         </tbody>
     </table>
+    <h3>Sorry, er zijn helaas nog geen prijzen beschikbaar van dit product :(</h3>
 </div>
 
 
