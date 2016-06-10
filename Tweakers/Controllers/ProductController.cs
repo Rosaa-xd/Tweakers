@@ -106,6 +106,53 @@ namespace Tweakers.Controllers
             return View(Dictionaries.Products[id]);
         }
 
+        public ActionResult Product2(int id)
+        {
+            return View(Dictionaries.Products[id]);
+        }
+
+        public ActionResult Product3(int id)
+        {
+            return View(Dictionaries.Products[id]);
+        }
+
+        public ActionResult Product4(int id)
+        {
+            return View(Dictionaries.Products[id]);
+        }
+
+        public ActionResult Product5(int id)
+        {
+            return View(Dictionaries.Products[id]);
+        }
+
+        public ActionResult Product6(int id)
+        {
+            return View(Dictionaries.Products[id]);
+        }
+
+        public ActionResult Product7(int id)
+        {
+            return View(Dictionaries.Products[id]);
+        }
+
+        public ActionResult Product8(int id)
+        {
+            return View(Dictionaries.Products[id]);
+        }
+
+        public ActionResult Product9(int id)
+        {
+            return View(Dictionaries.Products[id]);
+        }
+
+        public ActionResult Product10(int id)
+        {
+            return View(Dictionaries.Products[id]);
+        }
+        #endregion
+
+        #region productViews
         public ActionResult ShopPricesProduct(int id)
         {
             return View(Dictionaries.Products[id]);
