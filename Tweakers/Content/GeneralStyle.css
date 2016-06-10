@@ -71,3 +71,24 @@ footer {
 .shopPrices p {
     float: left;
 }
+.specTable {
+    width: 500px;
+    float: right;
+    margin-right: 300px;
+    margin-top: 30px;
+}
+
+.specTable table tbody tr td p {
+    margin: 0 auto;
+}
+
+.pictures {
+    float: left;
+    margin-top: 20px;
+    margin-right: 40px;
+}
+
+.pictureTable tbody tr td img {
+    max-height: 400px;
+    max-width: 600px;
+}

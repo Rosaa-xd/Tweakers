@@ -247,6 +247,7 @@
     <Content Include="Views\Product\Product8.cshtml" />
     <Content Include="Views\Product\Product9.cshtml" />
     <Content Include="Views\Product\Product10.cshtml" />
+    <Content Include="Views\Product\SpecsProduct.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
