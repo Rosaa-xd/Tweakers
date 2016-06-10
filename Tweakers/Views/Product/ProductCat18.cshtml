@@ -27,7 +27,7 @@
             {
                 <tr>
                     <td>
-                        <p>@Html.ActionLink(p.Name + " " + p.SKU, "Product" + p.ID, "Product")</p>
+                        <p>@Html.ActionLink(p.Name + " " + p.SKU, "Product" + p.ID, new { id = p.ID })</p>
                     </td>
                     <td>
                         <p>Score: @p.AverageReviewScore</p>

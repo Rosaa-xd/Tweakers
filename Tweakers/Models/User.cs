@@ -20,6 +20,7 @@ namespace Tweakers.Models
         public List<UserList> UserLists;
         public List<Review> Reviews;
 
+        #region Constructors
         public User(int id, string name, string password)
         {
             ID = id;
@@ -45,7 +46,9 @@ namespace Tweakers.Models
         {
             
         }
+        #endregion
 
+        #region DatabaseMethods
         public static User FindByLogin(string name, string password)
         {
             string query = "SELECT * " +
@@ -63,7 +66,42 @@ namespace Tweakers.Models
                 using (OracleDataReader reader = command.ExecuteReader())
                 {
                     if (reader.Read())
-                        return GetUserFromDataRecord(reader);
+                    {
+                        var dicId = GetUserIdFromRecord(reader);
+                        if (!Dictionaries.Users.ContainsKey(dicId))
+                        {
+                            Dictionaries.Users.Add(dicId, GetUserFromDataRecord(reader));
+                        }
+                        return Dictionaries.Users[dicId];
+                    }
+                }
+            }
+            return null;
+        }
+
+        public static User FindById(int id)
+        {
+            string query = "SELECT * " +
+                           "FROM TBL_USER " +
+                           "WHERE ID=:id";
+
+            using (OracleConnection connection = CreateConnection())
+            using (OracleCommand command = new OracleCommand(query, connection))
+            {
+                command.BindByName = true;
+                command.Parameters.Add("id", id);
+
+                using (OracleDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        var dicId = GetUserIdFromRecord(reader);
+                        if (!Dictionaries.Users.ContainsKey(dicId))
+                        {
+                            Dictionaries.Users.Add(dicId, GetUserFromDataRecord(reader));
+                        }
+                        return Dictionaries.Users[dicId];
+                    }
                 }
             }
             return null;
@@ -78,5 +116,11 @@ namespace Tweakers.Models
                 Convert.ToString(record["PASSWORD"])
             );
         }
+
+        private static int GetUserIdFromRecord(IDataRecord record)
+        {
+            return Convert.ToInt32(record["ID"]);
+        }
+        #endregion
     }
 }

@@ -21,7 +21,7 @@ namespace Tweakers.Models
         public List<ProductPicture> ProductPictures;
         public List<ProductSpecification> ProductSpecifications;
         public List<UserList> UserLists;
-        public List<Review> Reviews;
+        public List<ProductReview> Reviews;
         public List<ShopPrice> ShopPrices;
 
         #region Constructors
@@ -66,7 +66,7 @@ namespace Tweakers.Models
 
         public Product(string name, string brand, string sku, long ean, ProductType productType, Category category,
             List<ProductPicture> productPictures, List<ProductSpecification> productSpecifications,
-            List<UserList> userLists, List<Review> reviews, List<ShopPrice> shopPrices)
+            List<UserList> userLists, List<ProductReview> reviews, List<ShopPrice> shopPrices)
         {
             Name = name;
             Brand = brand;
@@ -74,6 +74,61 @@ namespace Tweakers.Models
             EAN = ean;
             ProductType = productType;
             Category = category;
+            ProductPictures = productPictures;
+            ProductSpecifications = productSpecifications;
+            UserLists = userLists;
+            Reviews = reviews;
+            ShopPrices = shopPrices;
+        }
+
+        public Product(string name, string brand, string sku, long ean, Category category,
+            List<ProductPicture> productPictures, List<ProductSpecification> productSpecifications,
+            List<UserList> userLists, List<ProductReview> reviews, List<ShopPrice> shopPrices)
+        {
+            Name = name;
+            Brand = brand;
+            SKU = sku;
+            EAN = ean;
+            Category = category;
+            ProductPictures = productPictures;
+            ProductSpecifications = productSpecifications;
+            UserLists = userLists;
+            Reviews = reviews;
+            ShopPrices = shopPrices;
+        }
+
+        public Product(int id, string name, string brand, string sku, long ean, double averageReviewScore, double price, Category category,
+            List<ProductPicture> productPictures, List<ProductSpecification> productSpecifications,
+            List<UserList> userLists, List<ProductReview> reviews, List<ShopPrice> shopPrices)
+        {
+            ID = id;
+            Name = name;
+            Brand = brand;
+            SKU = sku;
+            EAN = ean;
+            AverageReviewScore = averageReviewScore;
+            Price = price;
+            Category = category;
+            ProductPictures = productPictures;
+            ProductSpecifications = productSpecifications;
+            UserLists = userLists;
+            Reviews = reviews;
+            ShopPrices = shopPrices;
+        }
+
+        public Product(int id, string name, string brand, string sku, long ean, double averageReviewScore, double price, ProductType productType,
+            Category category, List<ProductPicture> productPictures, List<ProductSpecification> productSpecifications,
+            List<UserList> userLists, List<ProductReview> reviews, List<ShopPrice> shopPrices)
+        {
+            ID = id;
+            Name = name;
+            Brand = brand;
+            SKU = sku;
+            EAN = ean;
+            AverageReviewScore = averageReviewScore;
+            Price = price;
+            Category = category;
+            ProductType = productType;
             ProductPictures = productPictures;
             ProductSpecifications = productSpecifications;
             UserLists = userLists;
@@ -103,7 +158,13 @@ namespace Tweakers.Models
                 {
                     while (reader.Read())
                     {
-                        products.Add(GetProductFromDataRecord(reader));
+                        var dicId = GetProductIdFromDataRecord(reader);
+                        if (!Dictionaries.Products.ContainsKey(dicId))
+                        {
+                            Dictionaries.Products.Add(dicId,
+                                GetProductFromDataRecord(reader));
+                        }
+                        products.Add(Dictionaries.Products[dicId]);
                     }
                 }
             }
@@ -168,7 +229,6 @@ namespace Tweakers.Models
 
         private static Product GetProductFromDataRecord(IDataRecord record)
         {
-            ProductType productType;
             int id = Convert.ToInt32(record["ID"]);
             string name = Convert.ToString(record["NAME"]);
             string brand = Convert.ToString(record["BRAND"]);
@@ -176,15 +236,27 @@ namespace Tweakers.Models
             long ean = Convert.ToInt64(record["EAN"]);
             double ars = GetProductAverageReviewScore(Convert.ToInt32(record["ID"]));
             double price = GetProductPrice(Convert.ToInt32(record["ID"]));
-            productType = record.IsDBNull(1) ? null : ProductType.FindById(Convert.ToInt32(record["PRODUCTTYPE_ID"]));
+            ProductType productType = record.IsDBNull(1) ? null : ProductType.FindById(Convert.ToInt32(record["PRODUCTTYPE_ID"]));
             Category category = Category.FindById(Convert.ToInt32(record["CATEGORY_ID"]));
+            List<ProductPicture> productPictures = ProductPicture.FindAllProductPicturesForProduct(id);
+            List<ProductSpecification> productSpecifications = ProductSpecification.FindAllSpecs(id);
+            List<UserList> userLists = UserList.AllUserListsWithProduct(id);
+            List<ProductReview> reviews = ProductReview.AllProductReviews(id);
+            List<ShopPrice> shopPrices = ShopPrice.AllShopPriceOfProduct(id);
 
             if (productType == null)
             {
-                return new Product(id, name, brand, sku, ean, ars, price, category);
+                return new Product(id, name, brand, sku, ean, ars, price, category,
+                    productPictures, productSpecifications, userLists, reviews, shopPrices);
             }
 
-            return new Product(id, name, brand, sku, ean, ars, price, productType, category);
+            return new Product(id, name, brand, sku, ean, ars, price, productType,
+                category, productPictures, productSpecifications, userLists, reviews, shopPrices);
+        }
+
+        private static int GetProductIdFromDataRecord(IDataRecord record)
+        {
+            return Convert.ToInt32(record["ID"]);
         }
         #endregion
     }

@@ -14,6 +14,15 @@ namespace Tweakers.Controllers
             return View(Category.ReturnAllParentCategories());
         }
 
+        /// <summary>
+        /// Method to automatically generate the right view for the corresponding category.
+        /// If the category doens't have any subcategories, the method will redirect it to the corresponding ProductCategory
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// View(Category.ReturnAllSubCategories(id))
+        /// RedirectToAction("ProductCat" + id, "Product")
+        /// </returns>
         private ActionResult SubCategory(int id)
         {
             if (Category.ReturnAllSubCategories(id).Count != 0)
@@ -23,6 +32,7 @@ namespace Tweakers.Controllers
             return RedirectToAction("ProductCat" + id, "Product");
         }
 
+        #region Categories
         public ActionResult Cat1()
         {
             return SubCategory(1);
@@ -117,5 +127,6 @@ namespace Tweakers.Controllers
         {
             return SubCategory(19);
         }
+        #endregion
     }
 }

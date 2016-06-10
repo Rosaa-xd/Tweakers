@@ -125,6 +125,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\GeneralStyle.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
@@ -167,16 +168,15 @@
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\ShopPriceController.cs" />
     <Compile Include="Controllers\ShopReviewController.cs" />
-    <Compile Include="Controllers\SpecificationController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserListController.cs" />
-    <Compile Include="HtmlHelperClasses\HtmlCategoryHelper.cs" />
     <Compile Include="Models\DbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Asset.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Dictionaries.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductPicture.cs" />
     <Compile Include="Models\ProductReview.cs" />
@@ -186,7 +186,6 @@
     <Compile Include="Models\Shop.cs" />
     <Compile Include="Models\ShopPrice.cs" />
     <Compile Include="Models\ShopReview.cs" />
-    <Compile Include="Models\Specification.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -221,7 +220,6 @@
     <Content Include="Views\Category\Cat17.cshtml" />
     <Content Include="Views\Category\Cat18.cshtml" />
     <Content Include="Views\Category\Cat19.cshtml" />
-    <Content Include="Views\Product\Product.cshtml" />
     <Content Include="Views\Product\ProductCat10.cshtml" />
     <Content Include="Views\Product\ProductCat11.cshtml" />
     <Content Include="Views\Product\ProductCat15.cshtml" />
@@ -237,6 +235,20 @@
     <Content Include="Views\Product\ProductCat6.cshtml" />
     <Content Include="Views\Product\ProductCat8.cshtml" />
     <Content Include="Views\Product\ProductCat9.cshtml" />
+    <Content Include="Views\Product\Product1.cshtml" />
+    <Content Include="Views\Product\_ProductLayout.cshtml" />
+    <Content Include="Views\Product\ShopPricesProduct.cshtml" />
+    <Content Include="Views\Product\Product2.cshtml" />
+    <Content Include="Views\Product\Product3.cshtml" />
+    <Content Include="Views\Product\Product4.cshtml" />
+    <Content Include="Views\Product\Product5.cshtml" />
+    <Content Include="Views\Product\Product6.cshtml" />
+    <Content Include="Views\Product\Product7.cshtml" />
+    <Content Include="Views\Product\Product8.cshtml" />
+    <Content Include="Views\Product\Product9.cshtml" />
+    <Content Include="Views\Product\Product10.cshtml" />
+    <Content Include="Views\Product\SpecsProduct.cshtml" />
+    <Content Include="Views\Product\ReviewsProduct.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -13,5 +13,15 @@ namespace Tweakers.Controllers
         {
             return View();
         }
+
+        public ActionResult WishList(int id)
+        {
+            return View();
+        }
+
+        public ActionResult Inventory(int id)
+        {
+            return View();
+        }
     }
 }

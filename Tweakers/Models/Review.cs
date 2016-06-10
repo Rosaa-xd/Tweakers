@@ -13,11 +13,19 @@ namespace Tweakers.Models
         public Shop Shop { get; set; }
         public DateTime Date { get; set; }
 
+        #region Constructors
         protected Review(int id, User user, Product product, DateTime date)
         {
             ID = id;
             User = user;
             Product = product;
+            Date = date;
+        }
+
+        protected Review(int id, User user, DateTime date)
+        {
+            ID = id;
+            User = user;
             Date = date;
         }
 
@@ -42,5 +50,6 @@ namespace Tweakers.Models
             Shop = shop;
             Date = date;
         }
+        #endregion
     }
 }

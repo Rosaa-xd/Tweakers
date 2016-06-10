@@ -64,7 +64,12 @@ namespace Tweakers.Models
                 {
                     while (reader.Read())
                     {
-                        categories.Add(GetCategoryFromDataRecord(reader));
+                        var dicId = GetCategoryIdFromRecord(reader);
+                        if (!Dictionaries.Categories.ContainsKey(dicId))
+                        {
+                            Dictionaries.Categories.Add(dicId, GetCategoryFromDataRecord(reader));
+                        }
+                        categories.Add(Dictionaries.Categories[dicId]);
                     }
                 }
             }
@@ -85,7 +90,12 @@ namespace Tweakers.Models
             {
                 while (reader.Read())
                 {
-                    parentCategories.Add(GetCategoryFromDataRecord(reader));
+                    var dicId = GetCategoryIdFromRecord(reader);
+                    if (!Dictionaries.Categories.ContainsKey(dicId))
+                    {
+                        Dictionaries.Categories.Add(dicId, GetCategoryFromDataRecord(reader));
+                    }
+                    parentCategories.Add(Dictionaries.Categories[dicId]);
                 }
             }
             return parentCategories;
@@ -105,7 +115,12 @@ namespace Tweakers.Models
                 {
                     if (reader.Read())
                     {
-                        return GetCategoryFromDataRecord(reader);
+                        var dicId = GetCategoryIdFromRecord(reader);
+                        if (!Dictionaries.Categories.ContainsKey(dicId))
+                        {
+                            Dictionaries.Categories.Add(dicId, GetCategoryFromDataRecord(reader));
+                        }
+                        return Dictionaries.Categories[dicId];
                     }
                 }
             }
@@ -126,6 +141,10 @@ namespace Tweakers.Models
                 Convert.ToString(record["NAME"]));
         }
 
+        private static int GetCategoryIdFromRecord(IDataRecord record)
+        {
+            return Convert.ToInt32(record["ID"]);
+        }
         #endregion
     }
 }
