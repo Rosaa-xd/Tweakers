@@ -25,3 +25,49 @@
 body .render_body_content {
     margin-left: 40px;
 }
+
+.productPicture {
+    max-height: 200px;
+    max-width: 250px;
+    float: left;
+}
+
+footer {
+    clear: both;
+}
+
+.top {
+    height: 200px;
+    width: 100vw;
+}
+
+.specs {
+    margin-left: 300px;
+}
+
+.nav-tabs {
+    width: 100vw;
+    margin-top: 125px;
+    height: 30px;
+}
+
+.nav-tabs ul li {
+    list-style: none;
+}
+
+.nav-tabs ul li a {
+    text-decoration: none;
+    text-align: center;
+    height: 25px;
+    width: 15%;
+    float: left;
+    font-family: "Roboto Condesed", "helvetica", "Liberation Sans", sans-serif;
+}
+
+.shopPrices {
+    margin-top: 50px;
+}
+
+.shopPrices p {
+    float: left;
+}

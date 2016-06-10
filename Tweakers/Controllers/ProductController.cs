@@ -105,6 +105,21 @@ namespace Tweakers.Controllers
         {
             return View(Dictionaries.Products[id]);
         }
+
+        public ActionResult ShopPricesProduct(int id)
+        {
+            return View(Dictionaries.Products[id]);
+        }
+
+        public ActionResult SpecsProduct(int id)
+        {
+            return View();
+        }
+
+        public ActionResult ReviewsProduct(int id)
+        {
+            return View();
+        }
         #endregion
     }
 }
