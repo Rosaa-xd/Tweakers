@@ -103,8 +103,7 @@ namespace Tweakers.Controllers
 
         public ActionResult Product1(int id)
         {
-            Product product = Dictionaries.Products[id];
-            return View(product);
+            return View(Dictionaries.Products[id]);
         }
         #endregion
     }

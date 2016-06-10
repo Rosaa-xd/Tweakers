@@ -51,10 +51,13 @@ namespace Tweakers.Models
                 {
                     while (reader.Read())
                     {
-                        if (!reader.IsDBNull(0))
+                        var dicId = GetShopPriceIdFromRecord(reader);
+                        if (!Dictionaries.ShopPrices.ContainsKey(dicId))
                         {
-                            shopPrices.Add(GetShopPriceDataFromRecord(reader));
+                            Dictionaries.ShopPrices.Add(dicId,
+                                GetShopPriceDataFromRecord(reader));
                         }
+                        shopPrices.Add(Dictionaries.ShopPrices[dicId]);
                     }
                 }
             }
@@ -67,6 +70,17 @@ namespace Tweakers.Models
                 Shop.FindById(Convert.ToInt32(record["SHOP_ID"])),
                 Convert.ToDouble(record["PRICE"]),
                 Convert.ToString(record["WEBLINK"]));
+        }
+
+        /// <summary>
+        /// ShopPrice has a composite primary key in the database with SHOP_ID and PRODUCT_ID as its parameters.
+        /// Therefore the combination of SHOP_ID and PRODUCT_ID is always unique and usable as key for the dictionary
+        /// </summary>
+        /// <param name="record"></param>
+        /// <returns>SHOP_ID+PRODUCT_ID</returns>
+        private static int GetShopPriceIdFromRecord(IDataRecord record)
+        {
+            return Convert.ToInt32(record["SHOP_ID"]) + Convert.ToInt32(record["PRODUCT_ID"]);
         }
         #endregion
     }

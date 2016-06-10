@@ -34,7 +34,7 @@ namespace Tweakers.Models
         {
             List<ProductSpecification> productSpecifications = new List<ProductSpecification>();
 
-            string query = "SELECT PS.SPEC_VALUE, S.NAME " +
+            string query = "SELECT PS.*, S.NAME " +
                            "FROM TBL_SPECIFICATION S " +
                            "INNER JOIN TBL_PRODUCT_SPEC PS ON PS.SPEC_ID = S.ID " +
                            "INNER JOIN TBL_PRODUCT P ON PS.PRODUCT_ID = P.ID " +
@@ -50,10 +50,13 @@ namespace Tweakers.Models
                 {
                     while (reader.Read())
                     {
-                        if (!reader.IsDBNull(0))
+                        var dicId = GetProductSpecIdFromRecord(reader);
+                        if (!Dictionaries.ProductSpecifications.ContainsKey(dicId))
                         {
-                            productSpecifications.Add(GetSpecFromDataRecord(reader));
+                            Dictionaries.ProductSpecifications.Add(dicId,
+                                GetSpecFromDataRecord(reader));
                         }
+                        productSpecifications.Add(Dictionaries.ProductSpecifications[dicId]);
                     }
                 }
             }
@@ -65,6 +68,17 @@ namespace Tweakers.Models
             return new ProductSpecification(
                 Convert.ToString(record["NAME"]),
                 Convert.ToString(record["SPEC_VALUE"]));
+        }
+
+        /// <summary>
+        /// ShopPrice has a composite primary key in the database with SPEC_ID and PRODUCT_ID as its parameters.
+        /// Therefore the combination of SPEC_ID and PRODUCT_ID is always unique and usable as key for the dictionary
+        /// </summary>
+        /// <param name="record"></param>
+        /// <returns>PRODUCT_ID+SPEC_ID</returns>
+        private static int GetProductSpecIdFromRecord(IDataRecord record)
+        {
+            return Convert.ToInt32(record["PRODUCT_ID"]) + Convert.ToInt32(record["SPEC_ID"]);
         }
         #endregion
     }

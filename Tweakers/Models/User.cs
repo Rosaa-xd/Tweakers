@@ -66,7 +66,14 @@ namespace Tweakers.Models
                 using (OracleDataReader reader = command.ExecuteReader())
                 {
                     if (reader.Read())
-                        return GetUserFromDataRecord(reader);
+                    {
+                        var dicId = GetUserIdFromRecord(reader);
+                        if (!Dictionaries.Users.ContainsKey(dicId))
+                        {
+                            Dictionaries.Users.Add(dicId, GetUserFromDataRecord(reader));
+                        }
+                        return Dictionaries.Users[dicId];
+                    }
                 }
             }
             return null;
@@ -88,7 +95,12 @@ namespace Tweakers.Models
                 {
                     if (reader.Read())
                     {
-                        return GetUserFromDataRecord(reader);
+                        var dicId = GetUserIdFromRecord(reader);
+                        if (!Dictionaries.Users.ContainsKey(dicId))
+                        {
+                            Dictionaries.Users.Add(dicId, GetUserFromDataRecord(reader));
+                        }
+                        return Dictionaries.Users[dicId];
                     }
                 }
             }
@@ -103,6 +115,11 @@ namespace Tweakers.Models
                 Convert.ToString(record["USERNAME"]),
                 Convert.ToString(record["PASSWORD"])
             );
+        }
+
+        private static int GetUserIdFromRecord(IDataRecord record)
+        {
+            return Convert.ToInt32(record["ID"]);
         }
         #endregion
     }

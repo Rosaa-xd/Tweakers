@@ -158,15 +158,13 @@ namespace Tweakers.Models
                 {
                     while (reader.Read())
                     {
-                        products.Add(GetProductFromDataRecord(reader));
-                        try
+                        var dicId = GetProductIdFromDataRecord(reader);
+                        if (!Dictionaries.Products.ContainsKey(dicId))
                         {
-                            Dictionaries.Products.Add(GetProductIdFromDataRecord(reader), GetProductFromDataRecord(reader));
+                            Dictionaries.Products.Add(dicId,
+                                GetProductFromDataRecord(reader));
                         }
-                        catch (ArgumentException)
-                        {
-                            Dictionaries.Products[GetProductIdFromDataRecord(reader)] = GetProductFromDataRecord(reader);
-                        }
+                        products.Add(Dictionaries.Products[dicId]);
                     }
                 }
             }

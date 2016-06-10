@@ -60,10 +60,12 @@ namespace Tweakers.Models
                 {
                     while (reader.Read())
                     {
-                        if (!reader.IsDBNull(0))
+                        var dicId = GetAssetIdFromRecord(reader);
+                        if (!Dictionaries.Assets.ContainsKey(dicId))
                         {
-                            assets.Add(GetAssetDataFromRecord(reader));
+                            Dictionaries.Assets.Add(dicId, GetAssetDataFromRecord(reader));
                         }
+                        assets.Add(Dictionaries.Assets[dicId]);
                     }
                 }
             }
@@ -88,6 +90,11 @@ namespace Tweakers.Models
                 Convert.ToInt32(record["ID"]),
                 type,
                 Convert.ToString(record["EXPLANATION"]));
+        }
+
+        private static int GetAssetIdFromRecord(IDataRecord record)
+        {
+            return Convert.ToInt32(record["ID"]);
         }
         #endregion
     }

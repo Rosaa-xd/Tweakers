@@ -50,10 +50,12 @@ namespace Tweakers.Models
                 {
                     while (reader.Read())
                     {
-                        if (reader.IsDBNull(0))
+                        var dicId = GetShopIdFromDataRecord(reader);
+                        if (!Dictionaries.Shops.ContainsKey(dicId))
                         {
-                            return GetShopDataFromRecord(reader);
+                            Dictionaries.Shops.Add(dicId, GetShopDataFromRecord(reader));
                         }
+                        return Dictionaries.Shops[dicId];
                     }
                 }
             }
@@ -65,6 +67,11 @@ namespace Tweakers.Models
             return new Shop(
                 Convert.ToInt32(record["ID"]),
                 Convert.ToString(record["NAME"]));
+        }
+
+        private static int GetShopIdFromDataRecord(IDataRecord record)
+        {
+            return Convert.ToInt32(record["ID"]);
         }
         #endregion
     }

@@ -58,7 +58,13 @@ namespace Tweakers.Models
                     {
                         if (!reader.IsDBNull(0))
                         {
-                            productPictures.Add(GetProductPictureDataFromRecord(reader));
+                            var dicId = GetProductPictureIdFromRecord(reader);
+                            if (!Dictionaries.ProductPictures.ContainsKey(dicId))
+                            {
+                                Dictionaries.ProductPictures.Add(dicId,
+                                    GetProductPictureDataFromRecord(reader));
+                            }
+                            productPictures.Add(Dictionaries.ProductPictures[dicId]);
                         }
                     }
                 }
@@ -71,6 +77,11 @@ namespace Tweakers.Models
             return new ProductPicture(
                 Convert.ToInt32(record["ID"]),
                 Convert.ToString(record["PICTURELINK"]));
+        }
+
+        private static int GetProductPictureIdFromRecord(IDataRecord record)
+        {
+            return Convert.ToInt32(record["ID"]);
         }
         #endregion
     }

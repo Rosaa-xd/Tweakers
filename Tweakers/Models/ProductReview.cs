@@ -91,10 +91,13 @@ namespace Tweakers.Models
                 {
                     while (reader.Read())
                     {
-                        if (!reader.IsDBNull(0))
+                        var dicId = GetProductReviewIdFromRecord(reader);
+                        if (!Dictionaries.ProductReviews.ContainsKey(dicId))
                         {
-                            productReviews.Add(GetProductReviewDataFromRecord(reader));
+                            Dictionaries.ProductReviews.Add(dicId,
+                                GetProductReviewDataFromRecord(reader));
                         }
+                        productReviews.Add(Dictionaries.ProductReviews[dicId]);
                     }
                 }
             }
@@ -110,6 +113,11 @@ namespace Tweakers.Models
                 Convert.ToInt32(record["SCORE"]),
                 Convert.ToString(record["EXPLANATION"]),
                 Asset.AllProductReviewAssets(Convert.ToInt32(record["ID"])));
+        }
+
+        private static int GetProductReviewIdFromRecord(IDataRecord record)
+        {
+            return Convert.ToInt32(record["ID"]);
         }
         #endregion
     }

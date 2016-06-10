@@ -77,10 +77,12 @@ namespace Tweakers.Models
                 {
                     while (reader.Read())
                     {
-                        if (!reader.IsDBNull(0))
+                        var dicId = GetUserListIdFromRecord(reader);
+                        if (!Dictionaries.UserLists.ContainsKey(dicId))
                         {
-                            userLists.Add(GetUserListDataFromRecord(reader));
+                            Dictionaries.UserLists.Add(dicId, GetUserListDataFromRecord(reader));
                         }
+                        userLists.Add(Dictionaries.UserLists[dicId]);
                     }
                 }
             }
@@ -106,6 +108,11 @@ namespace Tweakers.Models
                 Convert.ToString(record["NAME"]),
                 type,
                 User.FindById(Convert.ToInt32(record["USER_ID"])));
+        }
+
+        private static int GetUserListIdFromRecord(IDataRecord record)
+        {
+            return Convert.ToInt32(record["ID"]);
         }
         #endregion
     }
