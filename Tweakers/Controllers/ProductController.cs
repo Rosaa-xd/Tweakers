@@ -173,7 +173,7 @@ namespace Tweakers.Controllers
 
         public ActionResult ReviewsProduct(int id)
         {
-            return View();
+            return View(Dictionaries.Products[id]);
         }
         #endregion
     }

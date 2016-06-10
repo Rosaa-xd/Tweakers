@@ -37,7 +37,10 @@
         }
         </tbody>
     </table>
-    <h3>Sorry, er zijn helaas nog geen prijzen beschikbaar van dit product :(</h3>
+    @if (Model.ShopPrices.Count == 0)
+    {
+        <h3>Sorry, er zijn helaas nog geen prijzen beschikbaar van dit product :(</h3>
+    }
 </div>
 
 
